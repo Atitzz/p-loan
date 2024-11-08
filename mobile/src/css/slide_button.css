@@ -1,0 +1,29 @@
+@keyframes stretch {
+    from {
+      width: 0px; /* จุด A */
+    }
+    to {
+      width: 100%; /* จุด B */
+    }
+  }
+  
+  @keyframes shrink {
+    from {
+      width: 100%; /* จุด B */
+    }
+    to {
+      width: 0px; /* จุด A */
+    }
+  }
+  
+  .animated-box {
+    height: 30px;
+  }
+  
+  .animated-box.stretch {
+    animation: stretch 0.5s ease forwards;
+  }
+  
+  .animated-box.shrink {
+    animation: shrink 0.5s ease forwards;
+  }

@@ -1,0 +1,174 @@
+import { Box, Card, InputLabel, Paper, Stack } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import Chart from "react-apexcharts";
+import * as Icons from '@mui/icons-material';
+function Dashboard() {
+  const chart = {
+    options: {
+      chart: {
+        id: "basic-bar",
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+      },
+    },
+    series: [
+      {
+        name: "series-1",
+        data: [30, 40, 45, 50, 49, 60, 70, 91],
+      },
+    ],
+  };
+
+  const donut = {
+    options: {},
+    series: [44, 55, 41, 17, 15],
+    labels: ["A", "B", "C", "D", "E"],
+  };
+  return (
+    <Stack spacing={2}>
+      <Stack direction='row' gap={4} flexWrap='wrap' sx={{width:'100%'}}>
+        <Stack sx={{p:4,flex:1,border:1,borderRadius:1,bgcolor:"#fff",borderColor:"#4634ff"}} direction='row' justifyContent='space-between' alignItems='center'>
+          <Stack direction='row' spacing={2} >
+            <Stack sx={{p:3,alignContent:"center",bgcolor:"#4634ff25",borderRadius:1}}>
+            <Icons.Groups sx={{color:"#4634ff"}}/>
+            </Stack>
+            <Stack spacing={2}>
+              <Box component='span' sx={{fontSize:12}}>Total Users</Box>
+              <Box component='span' sx={{fontWeight:"bold"}}>1307</Box>
+            </Stack>
+          </Stack>
+          <Stack>
+          <Icons.ArrowForwardIos sx={{color:"#4634ff"}}/>
+          </Stack>
+        </Stack>
+        
+        <Stack sx={{p:4,flex:1,border:1,borderRadius:1,bgcolor:"#fff",borderColor:"#28c76f"}} direction='row' justifyContent='space-between' alignItems='center'>
+          <Stack direction='row' spacing={2} >
+            <Stack sx={{p:3,alignContent:"center",bgcolor:"#28c76f25",borderRadius:1}}>
+            <Icons.ThumbUp sx={{color:"#28c76f"}}/>
+            </Stack>
+            <Stack spacing={2}>
+              <Box component='span' sx={{fontSize:12}}>Active Users</Box>
+              <Box component='span' sx={{fontWeight:"bold"}}>730</Box>
+            </Stack>
+          </Stack>
+          <Stack>
+          <Icons.ArrowForwardIos sx={{color:"#28c76f"}}/>
+          </Stack>
+        </Stack>
+
+        <Stack sx={{p:4,flex:1,border:1,borderRadius:1,bgcolor:"#fff",borderColor:"#eb2222"}} direction='row' justifyContent='space-between' alignItems='center'>
+          <Stack direction='row' spacing={2} >
+            <Stack sx={{p:3,alignContent:"center",bgcolor:"#eb222225",borderRadius:1}}>
+            <Icons.Groups sx={{color:"#eb2222"}}/>
+            </Stack>
+            <Stack spacing={2}>
+              <Box component='span' sx={{fontSize:12}}>Email Unverified Users</Box>
+              <Box component='span' sx={{fontWeight:"bold"}}>577</Box>
+            </Stack>
+          </Stack>
+          <Stack>
+          <Icons.ArrowForwardIos sx={{color:"#eb2222"}}/>
+          </Stack>
+        </Stack>
+
+        <Stack sx={{p:4,flex:1,border:1,borderRadius:1,bgcolor:"#fff",borderColor:"#ff9f43"}} direction='row' justifyContent='space-between' alignItems='center'>
+          <Stack direction='row' spacing={2} >
+            <Stack sx={{p:3,alignContent:"center",bgcolor:"#ff9f4325",borderRadius:1}}>
+            <Icons.Groups sx={{color:"#ff9f43"}}/>
+            </Stack>
+            <Stack spacing={2}>
+              <Box component='span' sx={{fontSize:12}}>Mobile Unverified Users</Box>
+              <Box component='span' sx={{fontWeight:"bold"}}>0</Box>
+            </Stack>
+          </Stack>
+          <Stack>
+          <Icons.ArrowForwardIos sx={{color:"#4634ff"}}/>
+          </Stack>
+        </Stack>
+        
+      </Stack>
+      <Stack spacing={2}>
+         <Stack
+            component={Paper}
+            sx={{ flex: 1 }}
+          >
+            <InputLabel sx={{textAlign:"start",fontSize:26,p:2}}>Overview</InputLabel>
+            <Stack sx={{flex:1,alignItems: "center", justifyContent: "center"}}>
+            <Chart
+              options={{
+                xaxis: {
+                  categories:[1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                },
+                dataLabels: {
+                  enabled: true,
+                  formatter: function (val) {
+                    return val.toLocaleString('th-TH', { style: 'currency', currency: 'THB' });
+                  }
+                },
+                tooltip: {
+                  y: {
+                    formatter: function (val) {
+                      return val.toLocaleString('th-TH', { style: 'currency', currency: 'THB' });
+                    }
+                  }
+                }
+              }}
+              series={[{
+                name:"ยอดขาย",
+                data:[30, 40, 45, 50, 49, 60, 70, 91]
+              }]}
+              type="bar"
+              width="1288"
+              height="280"
+            />
+            </Stack>
+          </Stack>
+        <Stack direction="row" spacing={2}>
+         
+          <Stack
+            component={Paper}
+            sx={{ flex: 1 }}
+          >
+            <InputLabel sx={{textAlign:"start",fontSize:18,p:2}}>User Register</InputLabel>
+              <Stack sx={{flex:1,alignItems: "center", justifyContent: "center"}}>
+            <Chart
+              options={{
+                xaxis: {
+                  categories:[1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+                }
+              }}
+              series={[{
+                name:"จำนวนผู้ลงทะเบียน",
+                data:[30, 40, 45, 50, 49, 60, 70, 91]
+              }]}
+              type="line"
+              width="650"
+            />
+            </Stack>
+          </Stack>
+
+          <Stack
+            component={Paper}
+            sx={{
+              flex: 1,
+            }}
+          >
+              <InputLabel sx={{textAlign:"start",fontSize:18,p:2}}>Login By Browser</InputLabel>
+               <Stack sx={{flex:1,alignItems: "center", justifyContent: "center"}}>
+            <Chart
+              options={{labels: ["A", "B", "C", "D", "E"]}}
+              series={[44, 55, 41, 17, 15]}
+              type="donut"
+              width="650"
+            />
+            </Stack>
+          </Stack>
+        </Stack>
+      </Stack>
+    </Stack>
+  );
+}
+
+export default Dashboard;

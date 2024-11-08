@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+       web:
+        build:
+          context: .
+          dockerfile: Dockerfile
+        restart: always
+        ports:
+            - "3001:3000"
+        networks:
+            - db_bridge
+      
+networks:
+  db_bridge:
+    external: true

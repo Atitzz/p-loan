@@ -1,0 +1,25 @@
+version: '3.8'
+ 
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    container_name: db
+    environment:
+      MYSQL_DATABASE: musion-loan    
+      MYSQL_USER: root
+      MYSQL_PASSWORD: db4ea626-fe44-4d5b-b76f-77aa5d4970c2
+      MYSQL_ROOT_PASSWORD: db4ea626-fe44-4d5b-b76f-77aa5d4970c2
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - bridge
+
+volumes:
+  dbdata:
+
+networks:
+  bridge:
+    driver: bridge
